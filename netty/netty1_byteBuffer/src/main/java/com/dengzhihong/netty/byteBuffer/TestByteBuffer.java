@@ -1,4 +1,4 @@
-package com.dengzhihong.netty.c1;
+package com.dengzhihong.netty.byteBuffer;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,7 @@ import java.nio.channels.FileChannel;
 /**
  * ByteBuffer内部结构：
  * 1.position：指针
- * 2.Limit：写入限制
+ * 2.Limit：读写限制
  * 3.Capacity：容量
  * 写模式clear()：position是写入位置，limit等于容量
  * 读模式flip()：position是读取位置，limit切换为读取限制
