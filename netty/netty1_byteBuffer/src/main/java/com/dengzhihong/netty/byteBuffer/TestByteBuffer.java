@@ -15,6 +15,7 @@ import java.nio.channels.FileChannel;
  * 读模式flip()：position是读取位置，limit切换为读取限制
  * 写模式compact()：是把为读完的部分向前压缩，然后切换到写模式
  *
+ * ByteBuffer是线程不安全的
  */
 @Slf4j
 public class TestByteBuffer {
