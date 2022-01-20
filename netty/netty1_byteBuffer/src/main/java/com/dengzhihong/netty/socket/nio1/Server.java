@@ -1,4 +1,4 @@
-package com.dengzhihong.netty.socket.nio;
+package com.dengzhihong.netty.socket.nio1;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static com.dengzhihong.netty.utils.ByteBufferUtil.debugRead;
 
 /**
- * 使用nio理解非阻塞，但实际不会这么用，因为这个线程一直在跑
+ * 使用nio理解非阻塞，但实际不会这么用，因为这个线程一直在跑（使用selector优化）
  */
 @Slf4j
 public class Server {

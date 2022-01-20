@@ -1,4 +1,4 @@
-package com.dengzhihong.netty.socket.nio;
+package com.dengzhihong.netty.socket.nio2_selector;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
