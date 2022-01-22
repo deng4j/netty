@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.dengzhihong</groupId>
-	<artifactId>netty1_byteBuffer</artifactId>
+	<artifactId>netty1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>netty1_byteBuffer</name>
-	<description>netty1_byteBuffer</description>
+	<name>netty1</name>
+	<description>netty1</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
