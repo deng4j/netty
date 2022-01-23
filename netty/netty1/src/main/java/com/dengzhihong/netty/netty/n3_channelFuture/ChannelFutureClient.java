@@ -1,4 +1,4 @@
-package com.dengzhihong.netty.netty.n3_channel;
+package com.dengzhihong.netty.netty.n3_channelFuture;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;

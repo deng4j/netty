@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/netty.iml" filepath="$PROJECT_DIR$/.idea/netty.iml" />
-      <module fileurl="file://$PROJECT_DIR$/netty1_byteBuffer/netty1.iml" filepath="$PROJECT_DIR$/netty1_byteBuffer/netty1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/netty1/netty1.iml" filepath="$PROJECT_DIR$/netty1/netty1.iml" />
     </modules>
   </component>
 </project>
