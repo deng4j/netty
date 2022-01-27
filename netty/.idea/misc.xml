@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/netty1_byteBuffer/pom.xml" />
         <option value="$PROJECT_DIR$/netty1/pom.xml" />
+        <option value="$PROJECT_DIR$/selfProtocol/pom.xml" />
       </list>
     </option>
   </component>

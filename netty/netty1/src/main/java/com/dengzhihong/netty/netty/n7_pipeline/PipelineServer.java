@@ -69,7 +69,7 @@ public class PipelineServer {
                             log.info("h3：{}",msg.toString());
                             super.channelRead(ctx, msg);
                             //ch.writeAndFlush() 从tail往前找出站handler
-                            ch.writeAndFlush(ctx.alloc().buffer().writeBytes("我是h4".getBytes()));
+                            ch.writeAndFlush(ctx.alloc().buffer().writeBytes("h4h4".getBytes()));
                             //ctx.writeAndFlush()从当前handler往前找出站handler，找不到出站就废了
                             //ctx.writeAndFlush(ctx.alloc().buffer().writeBytes("我是h4".getBytes()));
                         }
