@@ -12,6 +12,11 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import static com.dengzhihong.netty.netty.n9_byteBuf.LogUtil.log;
 
+/**
+ * 客户端通过.option(参数名称,值)方法给SocketChannel配置参数，
+ * 服务端的.option()是给ServerSocketChannel配置参数
+ * 服务端的.childOption()是给SocketChannel配置参数
+ */
 public class HelloServer {
 
     public static void main(String[] args) {
@@ -20,7 +25,7 @@ public class HelloServer {
         new ServerBootstrap()
             .group(boss,worker)
             .channel(NioServerSocketChannel.class)
-            .option(ChannelOption.SO_RCVBUF,10)
+            .option(ChannelOption.SO_RCVBUF,10)//调整系统的接收器缓冲区（滑动窗口）
             .childHandler(
                 new ChannelInitializer<NioSocketChannel>() {
                 @Override

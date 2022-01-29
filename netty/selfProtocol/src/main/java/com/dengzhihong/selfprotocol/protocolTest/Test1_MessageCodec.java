@@ -12,7 +12,7 @@ import io.netty.handler.logging.LoggingHandler;
 /**
  * @Sharable表示支持多线程，可以查看LoggingHandler类
  */
-public class TestMessageCodec {
+public class Test1_MessageCodec {
 
     public static void main(String[] args) throws Exception {
         EmbeddedChannel channel = new EmbeddedChannel(

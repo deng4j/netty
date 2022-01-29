@@ -11,7 +11,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-public class TestSharableChatServer {
+public class Test2_SharableChatServer {
 
     public static void main(String[] args) {
         NioEventLoopGroup boss = new NioEventLoopGroup();

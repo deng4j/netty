@@ -1,5 +1,6 @@
 package com.dengzhihong.selfprotocol.protocol;
 
+import com.dengzhihong.selfprotocol.config.Config;
 import com.dengzhihong.selfprotocol.message.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
@@ -29,18 +30,15 @@ public class MessageCodecSharale extends MessageToMessageCodec<ByteBuf,Message> 
         //设置版本
         buf.writeByte(1);
         //序列化算法：0==jdk，1==json
-        buf.writeByte(0);
+        buf.writeByte(Config.getSerializerAlgorithm().ordinal());
         //字节指令类型
         buf.writeByte(msg.getMessageType());
         //4字节指令序号
         buf.writeInt(msg.getSequenceId());
         //到这里再加上长度，总共添加了4+1+1+1+4+4=15个字节，为了满足2的整数幂，添加一个字节
         buf.writeByte(0xff);
-        //获取内容的字节数组
-        ByteArrayOutputStream bos=new ByteArrayOutputStream();
-        ObjectOutputStream oos=new ObjectOutputStream(bos);
-        oos.writeObject(msg);
-        byte[] bytes = bos.toByteArray();
+        //使用序列化器获取内容的字节数组
+        byte[] bytes = Config.getSerializerAlgorithm().serializer(msg);
         //长度，一定是在实际内容前面，否则定长解码器会报错
         buf.writeInt(bytes.length);
         //正文
@@ -68,14 +66,16 @@ public class MessageCodecSharale extends MessageToMessageCodec<ByteBuf,Message> 
         //读实际内容
         byte[] bytes = new byte[len];
         buf.readBytes(bytes,0,len);
-        //将读到的内容反序列化成对象
-        if (serializerType==0){
-            ObjectInputStream ois=new ObjectInputStream(new ByteArrayInputStream(bytes));
-            Message message = (Message)ois.readObject();
-            log.info("{},{},{},{},{},{}",magicNum,version,serializerType,messageType,sequenceId,len);
-            log.info("{}",message);
-            //将消息存入到list，以便传递给下一个handler
-            list.add(message);
-        }
+        //找到反序列化算法
+        Serializer.Algorithm algorithm = Serializer.Algorithm.values()[serializerType];
+        //确定具体消息类型，不能是父类
+        Class<?> messageClass = Message.getMessageClass(messageType);
+        //反序列化
+        Object message = algorithm.deserializer(messageClass, bytes);
+        log.info("{},{},{},{},{},{}",magicNum,version,serializerType,messageType,sequenceId,len);
+        log.info("{}",message);
+        //将消息存入到list，以便传递给下一个handler
+        list.add(message);
+
     }
 }
