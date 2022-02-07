@@ -19,6 +19,8 @@ public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcReq
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequestMessage message)  {
         RpcResponseMessage response = new RpcResponseMessage();
+        //设置序列号
+        response.setSequenceId(message.getSequenceId());
         try {
             //获取真正的对象
             Object service = ServiceFactory.getService(Class.forName(message.getInterfaceName()));
