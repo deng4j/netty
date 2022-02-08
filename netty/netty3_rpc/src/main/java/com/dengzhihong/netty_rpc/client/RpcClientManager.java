@@ -14,6 +14,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.util.concurrent.DefaultPromise;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Proxy;
@@ -21,15 +22,15 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class RpcClientManager {
 
-    private static volatile Channel channel=null;
+    private static volatile Channel channel = null;
 
     /**
      * 获取唯一的channel对象
      */
-    public static Channel getChannel(){
-        if (null==channel){
-            synchronized (RpcClientManager.class){
-                if (null==channel){
+    public static Channel getChannel() {
+        if (null == channel) {
+            synchronized (RpcClientManager.class) {
+                if (null == channel) {
                     initChannel();
                 }
             }
@@ -38,19 +39,29 @@ public class RpcClientManager {
     }
 
     /**
-     * 创建代理类
+     * 创建代理
      */
-    public static <T> T getProxyService(Class<T> serviceClass){
+    public static <T> T getProxyService(Class<T> serviceClass) {
 
-        ClassLoader loader =serviceClass.getClassLoader();
-        Class<?>[] interfaces=new Class[]{serviceClass};
+        ClassLoader loader = serviceClass.getClassLoader();
+        Class<?>[] interfaces = new Class[] {serviceClass};
         Object proxyInstance = Proxy.newProxyInstance(loader, interfaces, ((proxy, method, args) -> {
             //1.将方法调用转化为消息对象
-            RpcRequestMessage msg = new RpcRequestMessage(SequenceIdGenerator.nextId(), serviceClass.getName(), method.getName(),
-                method.getReturnType(), method.getParameterTypes(), args);
+            int sequenceId = SequenceIdGenerator.nextId();
+            RpcRequestMessage msg = new RpcRequestMessage(sequenceId, serviceClass.getName(), method.getName(), method.getReturnType(),
+                method.getParameterTypes(), args);
             //发送消息
             getChannel().writeAndFlush(msg);
-            return null;
+            //指定promise异步接收结果线程
+            DefaultPromise<Object> promise = new DefaultPromise<>(getChannel().eventLoop());
+            //将promise存入ResponseHandler
+            RpcResponseMessageHandler.map.put(sequenceId, promise);
+            //等待promise的结果
+            promise.await();
+            if (!promise.isSuccess()) {
+                throw new RuntimeException(promise.cause());
+            }
+            return promise.getNow();
         }));
         return (T)proxyInstance;
     }
@@ -74,10 +85,10 @@ public class RpcClientManager {
             }
         });
         try {
-            channel= bootstrap.connect("localhost", 8080).sync().channel();
+            channel = bootstrap.connect("localhost", 8080).sync().channel();
             //改成异步关闭channel，不然一直阻塞等待关闭就返回不了
             channel.closeFuture().addListener(future -> {
-               group.shutdownGracefully();
+                group.shutdownGracefully();
             });
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -87,6 +98,7 @@ public class RpcClientManager {
     public static void main(String[] args) {
         //测试
         HelloService service = getProxyService(HelloService.class);
-        service.sayHello("李四");
+        String str = service.sayHello("李四");
+        System.out.println(str);
     }
 }
