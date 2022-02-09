@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/netty1/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/netty2_msg/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/netty3_rpc/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/netty4_source/src/main/java" charset="UTF-8" />
   </component>
 </project>
