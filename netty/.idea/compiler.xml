@@ -7,25 +7,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="netty2_msg" />
+        <module name="netty-client" />
+        <module name="netty1" />
         <module name="netty3_rpc" />
         <module name="netty4_source" />
-        <module name="netty2_msg" />
-        <module name="netty1" />
+        <module name="netty-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
+      <module name="netty-client" target="8" />
+      <module name="netty-server" target="8" />
       <module name="netty1" target="8" />
       <module name="netty2_msg" target="8" />
       <module name="netty3_rpc" target="8" />
       <module name="netty4_source" target="8" />
+      <module name="netty5-demo" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="netty-client" options="" />
+      <module name="netty-server" options="" />
       <module name="netty1" options="-parameters" />
       <module name="netty2_msg" options="-parameters" />
       <module name="netty3_rpc" options="-parameters" />
       <module name="netty4_source" options="-parameters" />
+      <module name="netty5-demo" options="-parameters" />
     </option>
   </component>
 </project>

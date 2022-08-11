@@ -10,6 +10,9 @@
         <option value="$PROJECT_DIR$/netty2_msg/pom.xml" />
         <option value="$PROJECT_DIR$/netty3_rpc/pom.xml" />
         <option value="$PROJECT_DIR$/netty4_source/pom.xml" />
+        <option value="$PROJECT_DIR$/netty-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/netty5-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/netty5-demo/netty-server/pom.xml" />
       </list>
     </option>
   </component>
