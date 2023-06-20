@@ -37,5 +37,8 @@ public class TestEventLoop {
         });
         //4.执行定时任务
         group.next().scheduleAtFixedRate(()->{log.info("定时任务:2秒后执行，每1秒执行一次");},2,1, TimeUnit.SECONDS);
+
+        //优雅关闭
+        //group.shutdownGracefully();
     }
 }

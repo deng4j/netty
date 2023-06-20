@@ -3,6 +3,8 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/netty4_source/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/netty4_source/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/netty5-demo/netty-server/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />

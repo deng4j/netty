@@ -35,6 +35,7 @@ public class PipelineClient {
 
         new Thread(()->{
             Scanner scanner = new Scanner(System.in);
+            System.err.println("scanner：请输入");
             while (true){
                 String line = scanner.nextLine();
                 if ("q".equals(line)){

@@ -181,7 +181,7 @@ new Bootstrap()
 
 ### 3.1 EventLoop
 
-事件循环对象
+**事件循环对象**
 
 EventLoop 本质是一个单线程执行器（同时维护了一个 Selector），里面有 run 方法处理 Channel 上源源不断的 io 事件。
 
@@ -194,7 +194,7 @@ EventLoop 本质是一个单线程执行器（同时维护了一个 Selector）�
 
 
 
-事件循环组
+**事件循环组**
 
 EventLoopGroup 是一组 EventLoop，Channel 一般会调用 EventLoopGroup 的 register 方法来绑定其中一个 EventLoop，后续这个 Channel 上的 io 事件都由此 EventLoop 来处理（保证了 io 事件处理时的线程安全）
 
