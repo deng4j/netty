@@ -32,7 +32,7 @@ Netty协议栈用于内部各模块之间的通信，它基于TCP/IP协议栈，
 
 一个Netty节点既可以作为客户端连接另外的Netty节点，也可以作为Netty服务端被其他Netty节点连接，这完全取决于使用者的业务场景和具体的业务组网。
 
-![QQ20230712-021413@2x](/Users/deng4j/development/idea_project/project6_netty/netty/a_doc/netty私有协议栈开发/assist/QQ20230712-021413@2x.png)
+![QQ20230712-021413@2x](assist/QQ20230712-021413@2x.png)
 
 ## 2.协议栈功能描述
 
@@ -46,7 +46,7 @@ Netty协议栈承载了业务内部各模块之间的消息交互和服务调用
 
 ## 3.通信模型
 
-![QQ20230712-021805@2x](/Users/deng4j/development/idea_project/project6_netty/netty/a_doc/netty私有协议栈开发/assist/QQ20230712-021805@2x.png)
+![QQ20230712-021805@2x](assist/QQ20230712-021805@2x.png)
 
 1. Netty协议栈客户端发送握手请求消息，携带节点ID等有效身份认证信息；
 2. Netty协议栈服务端对握手请求消息进行合法性校验，包括节点ID有效性校验、
