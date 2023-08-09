@@ -10,7 +10,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import static com.dengzhihong.netty.netty.n9_byteBuf.LogUtil.log;
+import static com.dengzhihong.netty.netty.n7_byteBuf.LogUtil.log;
 
 /**
  * 客户端通过.option(参数名称,值)方法给SocketChannel配置参数，

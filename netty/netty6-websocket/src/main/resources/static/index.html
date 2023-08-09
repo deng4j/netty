@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="root">
+    <p>Netty时间服务器：</p>
+    <form onsubmit="return false;">
+        输入：<input type="text" v-model='msg'><br>
+        <input type="button" @click="sendFunc" value="发送websocket消息">
+    </form>
+    {{resMsg}}
+</div>
+</body>
+</html>
+
+<!-- 引入vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data(){
+            return {
+                socket:null,
+                msg:'netty服务端时间',
+                resMsg:'waiting...',
+            }
+        },
+        methods:{
+            sendFunc(){
+                if (!window.WebSocket){
+                    return;
+                }
+                if(socket.readyState == WebSocket.OPEN){
+                    socket.send(this.msg);
+                }else{
+                    alert("WebSocket建立失败")
+                }
+            },
+
+        },
+        watch: {
+            resMsg:{
+                handler(newVal) {
+                    this.resMsg=newVal;
+                    console.log('watch:'+newVal);
+                },
+                deep:true
+            },
+        },
+        created(){
+                let vm = this
+                if (!window.WebSocket){
+                    window.WebSocket = window.MozWebSocket;
+                }
+                if (window.WebSocket){
+                    socket = new WebSocket("ws://localhost:8080/websocket");
+                    socket.onmessage = function(e){
+                        vm.resMsg = e.data;
+                        console.log("socket.onmessage："+vm.resMsg)
+                    }
+                    socket.onopen = function(e){
+                        vm.resMsg = "打开WebSocket服务正常，浏览器支持";
+                        console.log("socket.onopen："+vm.resMsg)
+                    }
+                    socket.close = function(e){
+                        vm.resMsg = "WebSocket关闭";
+                        console.log("socket.close："+vm.resMsg)
+                    }
+                }else{
+                    alert("您的浏览器不支持WebSocket")
+                }
+            },
+    });
+</script>

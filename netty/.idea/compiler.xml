@@ -7,15 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="netty3_rpc" />
-        <module name="netty4_source" />
         <module name="netty2_msg" />
         <module name="netty-client" />
         <module name="netty1" />
+        <module name="netty6-websocket" />
+        <module name="MyNettyProtocol" />
+        <module name="netty3_rpc" />
         <module name="netty-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11">
+      <module name="MyNettyProtocol" target="1.8" />
       <module name="netty-client" target="1.8" />
       <module name="netty-server" target="1.8" />
       <module name="netty1" target="1.8" />
@@ -23,10 +25,14 @@
       <module name="netty3_rpc" target="1.8" />
       <module name="netty4_source" target="1.8" />
       <module name="netty5-demo" target="1.8" />
+      <module name="netty6-websocket" target="1.8" />
+      <module name="Netty_Marshalling" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MyNettyProtocol" options="-parameters" />
+      <module name="Netty_Marshalling" options="-parameters" />
       <module name="netty-client" options="" />
       <module name="netty-server" options="" />
       <module name="netty1" options="-parameters" />
@@ -34,6 +40,7 @@
       <module name="netty3_rpc" options="-parameters" />
       <module name="netty4_source" options="-parameters" />
       <module name="netty5-demo" options="" />
+      <module name="netty6-websocket" options="-parameters" />
     </option>
   </component>
 </project>

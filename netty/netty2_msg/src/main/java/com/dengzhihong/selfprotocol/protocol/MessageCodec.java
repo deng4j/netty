@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 /**
- * ByteToMessageCodec子类不能加@Sharable注解，类中明确规定了
+ * ByteToMessageCodec或CombinedChannelDuplexHandler子类，不能加@Sharable注解，类中明确规定了
  */
 @Slf4j
 public class MessageCodec extends ByteToMessageCodec<Message> {
@@ -30,7 +30,7 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         buf.writeByte(msg.getMessageType());
         //4字节指令序号
         buf.writeInt(msg.getSequenceId());
-        //到这里再加上长度，总共添加了4+1+1+1+4+4=15个字节，为了满足2的整数幂，添加一个字节
+        //到这里再加上长度，总共添加了4+1+1+1+4=11个字节，为了满足2的整数幂，添加一个字节
         buf.writeByte(0xff);
         //获取内容的字节数组
         ByteArrayOutputStream bos=new ByteArrayOutputStream();

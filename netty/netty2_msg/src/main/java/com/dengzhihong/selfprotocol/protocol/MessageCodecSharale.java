@@ -16,6 +16,10 @@ import java.util.List;
 
 /**
  * 继承MessageToMessageCodec可以使用@Sharable注解
+ *
+ * @Sharable表示支持多线程，可以查看LoggingHandler类
+ *
+ * handler不保存状态时，就可以安全地在多线程下被共享
  */
 @ChannelHandler.Sharable
 @Slf4j
@@ -35,7 +39,7 @@ public class MessageCodecSharale extends MessageToMessageCodec<ByteBuf,Message> 
         buf.writeByte(msg.getMessageType());
         //4字节指令序号
         buf.writeInt(msg.getSequenceId());
-        //到这里再加上长度，总共添加了4+1+1+1+4+4=15个字节，为了满足2的整数幂，添加一个字节
+        //到这里再加上长度，总共添加了4+1+1+1+4=11个字节，为了满足2的整数幂，添加一个字节
         buf.writeByte(0xff);
         //使用序列化器获取内容的字节数组
         byte[] bytes = Config.getSerializerAlgorithm().serializer(msg);

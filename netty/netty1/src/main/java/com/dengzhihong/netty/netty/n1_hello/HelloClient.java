@@ -9,7 +9,7 @@ import io.netty.handler.codec.string.StringEncoder;
 import java.net.InetSocketAddress;
 
 /**
- * channel 的主要作用:
+ * channel的主要方法:
  *  1.close() 可以用来关闭 channel
  *  2.closeFuture() 用来处理 channel 的关闭
  *   > sync 方法作用是同步等待 channel 关闭
