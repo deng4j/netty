@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/netty5-demo/netty-server/pom.xml" />
         <option value="$PROJECT_DIR$/netty6-websocket/pom.xml" />
         <option value="$PROJECT_DIR$/MyNettyProtocol/pom.xml" />
+        <option value="$PROJECT_DIR$/netty7-websocket-SpringBoot/netty7-websocket-SpringBoot/pom.xml" />
       </list>
     </option>
   </component>
